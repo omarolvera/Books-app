@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h3 *ngIf="isNewItem || model.id !==''">{{isNewItem ? 'Add New Book' : 'Update Book'}}</h3>
+</div>
+<div class="modal-body">
+    <form novalidate #f="ngForm">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Title</label>
+            <div class="col-xs col-sm-10">
+                <input type="text" name="bookTitle" #bookTitle="ngModel" [(ngModel)]="model.Title" required class="form-control ">
+                <div *ngIf="f.submitted && !bookTitle.valid" class="help-block alert alert-danger" role="alert">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label ">Publish Date</label>
+            <div class="col-xs col-sm-10">
+                <input type="text" name="bookDate" #bookDate="ngModel" [(ngModel)]="model.PublishDate" required class="form-control ">
+                <div *ngIf="f.submitted && !bookDate.valid" class="help-block alert alert-danger" role="alert">Date is required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Description</label>
+            <div class="col-xs col-sm-10">
+                <textarea  name="bookDescription" #bookDescription="ngModel" [(ngModel)]="model.Description" required class="form-control"></textarea>
+                <div *ngIf="f.submitted && !bookDescription.valid" class="help-block alert alert-danger" role="alert">Description is required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Excerpt</label>
+            <div class="col-xs col-sm-10">
+                <textarea   name="bookExcerpt" #bookExcerpt="ngModel" [(ngModel)]="model.Excerpt" required class="form-control"></textarea>
+                <div *ngIf="f.submitted && !bookExcerpt.valid" class="help-block alert alert-danger" role="alert">bookExcerpt is required</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Page Count</label>
+            <div class="col-xs col-sm-10">
+                <input type="text" name="bookPage" #bookPage="ngModel" [(ngModel)]="model.PageCount" required class="form-control">
+                <div *ngIf="f.submitted && !bookPage.valid" class="help-block alert alert-danger" role="alert">Page Count is required</div>
+            </div>
+        </div>
+       
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" *ngIf="!isNewItem" (click)=" updateBook(f.form.valid)" class="btn btn-success">Update Book</button>
+    <button type="submit" *ngIf="isNewItem" (click)=" addBook(f.form.valid)" class="btn btn-success">Add Book</button>
+    <button type="button" (click)="cancelForm()" class="btn btn-secondary">Cancel</button>
+</div>

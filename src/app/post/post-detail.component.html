@@ -1,0 +1,6 @@
+<h1 *ngIf="postInfo.title == ''">Loading...</h1>
+<div class="post-detail" *ngIf="postInfo.title">
+  <p><a href="/" class="btn btn-outline grey"> Back</a></p>
+  <h2>{{ postInfo.title }}</h2>
+  <div class="post-body">{{ postInfo.body }}</div>
+</div>
